@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ajudante de Lição</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="paper-margin"></div>
+
+  <!-- ============ INÍCIO ============ -->
+  <section id="home" class="screen active">
+    <header class="home-header">
+      <div class="logo">📒</div>
+      <div>
+        <h1>Ajudante de Lição</h1>
+        <p class="hand" id="greeting">Vamos deixar a lição de casa divertida!</p>
+      </div>
+      <div class="name-box">
+        <label for="nameInput">Seu nome:</label>
+        <input id="nameInput" maxlength="16" placeholder="Digite aqui..." autocomplete="off" />
+      </div>
+    </header>
+
+    <div class="pills" id="homePills"></div>
+
+    <div class="mode-grid">
+      <button class="mode-card race" id="goRace">
+        <span class="tape"></span>
+        <div class="mode-emoji">🏎️</div>
+        <h2>Corrida das Contas</h2>
+        <p>Tabuada, somas, subtrações e divisões. Responda rápido para vencer a corrida!</p>
+      </button>
+      <button class="mode-card spell" id="goSpell">
+        <span class="tape"></span>
+        <div class="mode-emoji">🐝</div>
+        <h2>Soletrando</h2>
+        <p>Escute a palavra e escreva certinho. Em português ou inglês!</p>
+      </button>
+      <button class="mode-card review" id="goReview">
+        <span class="tape"></span>
+        <div class="mode-emoji">🔁</div>
+        <h2>Treinar meus erros</h2>
+        <p id="reviewDesc">Pratique as contas e palavras que você errou.</p>
+      </button>
+      <button class="mode-card album" id="goAlbum">
+        <span class="tape"></span>
+        <div class="mode-emoji">📔</div>
+        <h2>Álbum de Figurinhas</h2>
+        <p id="albumDesc">Ganhe figurinhas quando for bem!</p>
+      </button>
+    </div>
+
+    <footer class="home-footer">
+      <button class="link-btn" id="goParents">👨‍👩‍👧 Área dos pais</button>
+      <button class="icon-btn" id="soundBtn" title="Som">🔊</button>
+    </footer>
+  </section>
+
+  <!-- ============ CONFIG CORRIDA ============ -->
+  <section id="raceSetup" class="screen">
+    <div class="topbar"><button class="back-btn" data-back>⬅ Voltar</button><h2>🏎️ Corrida das Contas</h2></div>
+    <div class="sheet">
+      <h3>1. Quais contas?</h3>
+      <div class="chips" id="opChips"></div>
+
+      <div id="tablesBox">
+        <h3>2. Quais tabuadas? <small>(para × e ÷)</small></h3>
+        <div class="chips" id="tableChips"></div>
+        <button class="mini-btn" id="allTables">todas</button>
+      </div>
+
+      <div id="rangeBox">
+        <h3>Números até... <small>(para + e −)</small></h3>
+        <div class="chips" id="rangeChips"></div>
+      </div>
+
+      <h3>3. Contra quem você vai correr?</h3>
+      <div class="rivals" id="rivalChips"></div>
+
+      <h3>4. Tamanho da corrida</h3>
+      <div class="chips" id="lenChips"></div>
+
+      <button class="big-btn" id="startRace">🏁 Largar!</button>
+    </div>
+  </section>
+
+  <!-- ============ CORRIDA ============ -->
+  <section id="race" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-back>⬅ Sair</button>
+      <h2>🏁 Corrida!</h2>
+      <div class="score-box">⭐ <span id="raceStars">0</span></div>
+    </div>
+
+    <div class="track">
+      <div class="lane">
+        <div class="lane-label" id="playerLabel">Você</div>
+        <div class="racer" id="playerRacer"><span class="flip">🏎️</span><span class="turbo hidden" id="turbo">🔥</span></div>
+      </div>
+      <div class="lane">
+        <div class="lane-label" id="rivalLabel">Rival</div>
+        <div class="racer" id="rivalRacer"><span id="rivalEmoji" class="flip">🐢</span></div>
+      </div>
+      <div class="finish"></div>
+      <div class="countdown hidden" id="countdown">3</div>
+    </div>
+
+    <div class="question-area">
+      <div class="question" id="question">7 × 8 = <span class="answer" id="answer">?</span></div>
+      <div class="feedback" id="raceFeedback"></div>
+      <div class="numpad" id="numpad"></div>
+      <p class="hand hint">Dica: pode usar os números do teclado e apertar Enter ⏎</p>
+    </div>
+  </section>
+
+  <!-- ============ CONFIG SOLETRANDO ============ -->
+  <section id="spellSetup" class="screen">
+    <div class="topbar"><button class="back-btn" data-back>⬅ Voltar</button><h2>🐝 Soletrando</h2></div>
+    <div class="sheet">
+      <h3>1. Idioma</h3>
+      <div class="chips" id="langChips"></div>
+      <h3>2. Nível</h3>
+      <div class="chips" id="spellLevelChips"></div>
+      <p class="hand" id="customNote"></p>
+      <button class="big-btn" id="startSpell">🐝 Começar!</button>
+    </div>
+  </section>
+
+  <!-- ============ SOLETRANDO ============ -->
+  <section id="spell" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-back>⬅ Sair</button>
+      <h2 id="spellTitle">🐝 Soletrando</h2>
+      <div class="score-box">⭐ <span id="spellScore">0</span></div>
+    </div>
+    <div class="dots" id="spellDots"></div>
+
+    <div class="sheet spell-sheet">
+      <div class="word-pic" id="wordPic">🐱</div>
+      <div class="listen-btns">
+        <button class="big-btn blue" id="sayWord">🔊 Ouvir</button>
+        <button class="big-btn blue alt" id="saySlow">🐢 Devagar</button>
+        <button class="big-btn yellow" id="hintBtn">💡 Dica</button>
+      </div>
+      <div class="slots-wrap" id="slotsWrap">
+        <div class="slots" id="slots"></div>
+        <input id="spellInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+      </div>
+      <div class="feedback" id="spellFeedback"></div>
+      <button class="big-btn" id="checkWord">✔ Conferir</button>
+      <p class="hand hint">Clique nos quadradinhos e digite. Aperte Enter para conferir. Acentos contam!</p>
+    </div>
+  </section>
+
+  <!-- ============ ÁLBUM ============ -->
+  <section id="album" class="screen">
+    <div class="topbar"><button class="back-btn" data-back>⬅ Voltar</button><h2>📔 Álbum de Figurinhas</h2></div>
+    <div class="sheet">
+      <p class="hand" id="albumCount"></p>
+      <div class="album-grid" id="albumGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ PAIS ============ -->
+  <section id="parents" class="screen">
+    <div class="topbar"><button class="back-btn" data-back>⬅ Voltar</button><h2>👨‍👩‍👧 Área dos pais</h2></div>
+    <div class="sheet">
+      <h3>✏️ Lista de palavras da professora</h3>
+      <p class="hand">Uma palavra por linha. Pode colocar um emoji depois de um espaço, ex: <b>cachorro 🐶</b>. Aparece como nível “Lista da escola” no Soletrando.</p>
+      <textarea id="customWords" rows="7" placeholder="casa 🏠&#10;exceção&#10;pássaro 🐦"></textarea>
+      <button class="mini-btn" id="saveWords">💾 Salvar lista</button> <span id="savedMsg" class="hand"></span>
+
+      <h3>📉 O que mais errou</h3>
+      <div id="mistakesList"></div>
+
+      <h3>📊 Resumo</h3>
+      <div id="summary"></div>
+
+      <button class="link-btn danger" id="resetAll">♻️ Apagar todo o progresso</button>
+    </div>
+  </section>
+
+  <!-- ============ RESULTADO ============ -->
+  <div class="overlay hidden" id="result">
+    <div class="card">
+      <div class="result-emoji" id="resultEmoji">🏆</div>
+      <h2 id="resultTitle">Você venceu!</h2>
+      <div class="stars" id="resultStars"></div>
+      <div class="stats" id="resultStats"></div>
+      <div class="sticker-won hidden" id="stickerWon"></div>
+      <div class="missed" id="resultMissed"></div>
+      <div class="btns">
+        <button class="big-btn" id="playAgain">🔁 De novo</button>
+        <button class="big-btn alt" id="resultHome">🏠 Início</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="confetti"></div>
+  <script src="game.js"></script>
+</body>
+</html>
